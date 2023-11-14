@@ -1,29 +1,66 @@
-export default function Experience() {
+export default function Experience({
+  companyValue,
+  positionValue,
+  fromDate,
+  toDate,
+  responsabilityValue,
+  handler,
+}) {
   return (
     <>
       <div>
         <label htmlFor="company">Company: </label>
-        <input type="text" name="company" id="company" />
+        <input
+          type="text"
+          name="company"
+          id="company"
+          value={companyValue}
+          onChange={handler}
+        />
       </div>
 
       <div>
         <label htmlFor="position">Position: </label>
-        <input type="text" name="position" id="position" />
+        <input
+          type="text"
+          name="position"
+          id="position"
+          value={positionValue}
+          onChange={handler}
+        />
       </div>
 
       <div>
-        <label htmlFor="date-experience-initial">From: </label>
-        <input type="date" name="date-experience-initial" id="date-experience-initial" />
+        <label htmlFor="date_experience_initial">From: </label>
+        <input
+          type="date"
+          name="date_experience_initial"
+          id="date_experience_initial"
+          value={fromDate}
+          onChange={handler}
+        />
       </div>
 
       <div>
-        <label htmlFor="date-experience-final">To: </label>
-        <input type="date" name="date-experience-final" id="date-experience-final" />
+        <label htmlFor="date_experience_final">To: </label>
+        <input
+          type="date"
+          name="date_experience_final"
+          id="date_experience_final"
+          value={toDate}
+          onChange={handler}
+        />
       </div>
 
       <div>
-        <label htmlFor="respons">Main Responsability: </label>
-        <input type="textarea" name="respons" id="respons" />
+        <label htmlFor="responsability">Main Responsability: </label>
+        <input
+          type="textarea"
+          name="responsability"
+          id="responsability"
+          value={responsabilityValue}
+          onChange={handler}
+        />
       </div>
     </>
   );

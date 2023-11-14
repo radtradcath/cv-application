@@ -5,7 +5,7 @@
 .app {
   display: flex;
   padding: 15px;
-  gap: 5px;
+  gap: 12px;
 }
 
 * {
@@ -25,6 +25,13 @@ body {
 .forms-wrapper {
   width: 50%;
   border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.forms-wrapper > div {
+  flex: 1;
 }
 
 .preview-container {
