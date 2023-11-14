@@ -1,0 +1,43 @@
+#root {
+  border: 1px solid blue;
+}
+
+.app {
+  display: flex;
+  padding: 15px;
+  gap: 5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 1rem;
+}
+
+.form-container {
+  padding: 12px;
+  border: 1px solid red;
+  border-radius: 12px;
+}
+
+.forms-wrapper {
+  width: 50%;
+  border: 1px solid green;
+}
+
+.preview-container {
+  width: 50%;
+  border: 1px solid brown;
+  padding: 15px;
+}
+
+.personal-p,
+.education-p {
+  border-bottom: 1px solid black;
+}
+
+.experience-template {
+    border-bottom: 1px solid black;
+}
