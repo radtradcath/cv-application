@@ -19,8 +19,8 @@ export default function App() {
   });
 
   const [copyProfile, setCopyProfile] = useState("");
-
-  const [copyEducation, setCopyEducation] = useState("");
+  const [experienceForms, setExperienceForms] = useState([]);
+  const [educationForms, setEducationForms] = useState([]);
 
   function profileInputHandler(e) {
     const value = e.target.value;
@@ -32,7 +32,6 @@ export default function App() {
     const parentId = parent.id;
     const value = e.target.value;
     const inputKey = e.target.name;
-    console.log(parent)
 
     setExperienceForms(
       experienceForms.map((obj) => {
@@ -41,12 +40,24 @@ export default function App() {
     );
   }
 
-  // Handle "New" buttons
+  function educationInputHandler(e) {
+    const parent = e.target.closest(".education");
+    const parentId = parent.id;
+    const value = e.target.value;
+    const inputKey = e.target.name;
 
-  const [experienceForms, setExperienceForms] = useState([]);
+    setEducationForms(
+      educationForms.map((obj) => {
+        return obj.id === parentId ? { ...obj, [inputKey]: value } : obj;
+      })
+    );
+  }
+
+  // Handle "New" buttons
 
   function handleNewExperience(e) {
     e.preventDefault();
+    
     return setExperienceForms([
       ...experienceForms,
       {
@@ -56,6 +67,22 @@ export default function App() {
         from: "",
         to: "",
         responsibility: "",
+      },
+    ]);
+  }
+
+  function handleNewEducation(e) {
+    e.preventDefault();
+    console.log(educationForms)
+
+    return setEducationForms([
+      ...educationForms,
+      {
+        id: crypto.randomUUID(),
+        school: "",
+        area: "",
+        from: "",
+        to: "",
       },
     ]);
   }
@@ -76,9 +103,22 @@ export default function App() {
             nameValue={profileState.name}
             emailValue={profileState.email}
             phoneValue={profileState.phone}
+          
           />
         </FormSection>
-        <FormSection title="Education"></FormSection>
+        <FormSection title="Education" newHandler={handleNewEducation}>
+          {educationForms.map((form) => (
+            <Education
+              key={form.id}
+              id={form.id}
+              school={form.school}
+              area={form.area}
+              from={form.from}
+              to={form.to}
+              handler={educationInputHandler}
+            />
+          ))}
+        </FormSection>
         <FormSection title="Experience" newHandler={handleNewExperience}>
           {experienceForms.map((form) => (
             <Experience

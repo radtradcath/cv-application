@@ -1,6 +1,6 @@
-export default function Education({ handler, school, area, from, to }) {
+export default function Education({ handler, school, area, from, to, id }) {
   return (
-    <>
+    <div className="education" id={id}>
       <div>
         <label>
           School:
@@ -28,6 +28,6 @@ export default function Education({ handler, school, area, from, to }) {
           <input type="date" name="to" value={to} onChange={handler} />
         </label>
       </div>
-    </>
+    </div>
   );
 }
