@@ -1,142 +1,116 @@
 import { useState } from "react";
-import FormSection from "./Form-section.jsx";
-import PersonalForm from "./Personal.jsx";
-import Education from "./Education.jsx";
-import Experience from "./Experience.jsx";
-import PreviewProfile from "./Preview-profile.jsx";
-import PreviewEducation from "./Preview-education.jsx";
-import PreviewExperience from "./Preview-experience.jsx";
-import ExperienceTemplate from "./Experience-template.jsx";
+import AppWrapper from "./wrappers/AppWrapper.jsx";
+import FormsWrapper from "./wrappers/FormsWrapper.jsx";
+import PreviewWrapper from "./wrappers/PreviewWrapper.jsx";
+import FormSection from "./inputs/FormSection.jsx";
+import ProfileForm from "./inputs/Profile.jsx";
+import Education from "./inputs/Education.jsx";
+import Experience from "./inputs/Experience.jsx";
+import PreviewSection from "./preview/PreviewSection.jsx";
+import ExperienceTemplate from "./preview/ExperienceTemplate.jsx";
+import PreviewProfile from "./preview/PreviewProfile.jsx";
 
 export default function App() {
-  const [inputState, setInputState] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    school: "",
-    area: "",
-    date_initial: "",
-    date_final: "",
-    company: "",
-    position: "",
-    date_experience_initial: "",
-    date_experience_final: "",
-    responsability: "",
-  });
-
-  const [personalPreview, setPersonalPreview] = useState({
+  // Handle Inputs
+  const [profileState, setProfileState] = useState({
     name: "",
     email: "",
     phone: "",
   });
-  const [educationPreview, setEducationPreview] = useState({
-    school: "",
-    area: "",
-    date_initial: "",
-    date_final: "",
-  });
-  const [experiencePreview, setExperiencePreview] = useState({
-    company: "",
-    position: "",
-    date_experience_initial: "",
-    date_experience_final: "",
-    responsability: "",
-  });
 
-  function handleInput(e) {
+  const [copyProfile, setCopyProfile] = useState("");
+
+  const [copyEducation, setCopyEducation] = useState("");
+
+  function profileInputHandler(e) {
     const value = e.target.value;
-    setInputState({ ...inputState, [e.target.name]: value });
+    setProfileState({ ...profileState, [e.target.name]: value });
   }
 
-  function handlePersonalSubmission(e) {
+  function experienceInputHandler(e) {
+    const parent = e.target.closest(".experience");
+    const parentId = parent.id;
+    const value = e.target.value;
+    const inputKey = e.target.name;
+    console.log(parent)
+
+    setExperienceForms(
+      experienceForms.map((obj) => {
+        return obj.id === parentId ? { ...obj, [inputKey]: value } : obj;
+      })
+    );
+  }
+
+  // Handle "New" buttons
+
+  const [experienceForms, setExperienceForms] = useState([]);
+
+  function handleNewExperience(e) {
     e.preventDefault();
-
-    setPersonalPreview({
-      name: inputState.name,
-      email: inputState.email,
-      phone: inputState.phone,
-    });
+    return setExperienceForms([
+      ...experienceForms,
+      {
+        id: crypto.randomUUID(),
+        company: "",
+        position: "",
+        from: "",
+        to: "",
+        responsibility: "",
+      },
+    ]);
   }
 
-  function handleEducationSubmission(e) {
-    e.preventDefault();    
+  // Handle submit and edit
 
-    setEducationPreview({
-      school: inputState.school,
-      area: inputState.area,
-      date_initial: inputState.date_initial,
-      date_final: inputState.date_final
-    })
-  }
-
-  function handleExperienceSubmission(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-
-    setExperiencePreview({
-      company: inputState.company,
-      position: inputState.position,
-      date_experience_initial: inputState.date_experience_initial,
-      date_experience_final: inputState.date_experience_final,
-      responsability: inputState.responsability
-    })
+    setCopyProfile(profileState);
   }
 
   return (
-    <div className="app">
-      <div className="forms-wrapper">
-        <FormSection
-          title="Personal Info"
-          id="form_1"
-          handler={handlePersonalSubmission}
-        >
-          <PersonalForm
-            handler={handleInput}
-            nameValue={inputState.name}
-            emailValue={inputState.email}
-            phoneValue={inputState.phone}
+    <AppWrapper>
+      <FormsWrapper handler={handleSubmit}>
+        <FormSection title="Personal Info">
+          <ProfileForm
+            handler={profileInputHandler}
+            nameValue={profileState.name}
+            emailValue={profileState.email}
+            phoneValue={profileState.phone}
           />
         </FormSection>
-        <FormSection title="Education" id="form_2" handler={handleEducationSubmission}>
-          <Education 
-            schoolValue={inputState.school}
-            areaValue={inputState.area}
-            fromDateSchool={inputState.date_initial}
-            toDateSchool={inputState.date_final}
-            handler={handleInput} 
-          />
+        <FormSection title="Education"></FormSection>
+        <FormSection title="Experience" newHandler={handleNewExperience}>
+          {experienceForms.map((form) => (
+            <Experience
+              key={form.id}
+              id={form.id}
+              company={form.company}
+              from={form.from}
+              to={form.to}
+              responsibility={form.responsibility}
+              handler={experienceInputHandler}
+            />
+          ))}
         </FormSection>
-        <FormSection title="Experience" id="form_3" handler={handleExperienceSubmission}>
-          <Experience 
-            companyValue={inputState.company}
-            positionValue={inputState.position}
-            fromDate={inputState.date_experience_initial}
-            toDate={inputState.date_experience_final}
-            handler={handleInput}
+      </FormsWrapper>
+
+      <PreviewWrapper>
+        <PreviewSection title="Who am I" classTitle="profile-p">
+          <PreviewProfile
+            name={copyProfile.name}
+            phone={copyProfile.phone}
+            email={copyProfile.email}
           />
-        </FormSection>
-      </div>
-      <div className="preview-container">
-        <PreviewProfile
-          name={personalPreview.name}
-          phone={personalPreview.phone}
-          email={personalPreview.email}
-        />
-        <PreviewEducation
-          school={educationPreview.school}
-          area={educationPreview.area}
-          initialDate={educationPreview.date_initial}
-          finalDate={educationPreview.date_final}
-        />
-        <PreviewExperience>
-          <ExperienceTemplate 
-            company={experiencePreview.company}
-            position={experiencePreview.position}
-            respons={experiencePreview.responsability}
-            initialDate={experiencePreview.date_experience_initial}
-            finalDate={experiencePreview.date_experience_final}
-          />
-        </PreviewExperience>
-      </div>
-    </div>
+        </PreviewSection>
+        <PreviewSection
+          title="Education"
+          classTitle="education-p"
+        ></PreviewSection>
+        <PreviewSection
+          title="Professional Experience"
+          classTitle="experience-p"
+        ></PreviewSection>
+      </PreviewWrapper>
+    </AppWrapper>
   );
 }

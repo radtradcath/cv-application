@@ -22,7 +22,7 @@ body {
   border-radius: 12px;
 }
 
-.forms-wrapper {
+form {
   width: 50%;
   border: 1px solid green;
   display: flex;
@@ -34,15 +34,22 @@ body {
   flex: 1;
 }
 
-.preview-container {
+.preview-wrapper {
+  display: flex;
+  flex-direction: column;
   width: 50%;
   border: 1px solid brown;
   padding: 15px;
 }
 
-.personal-p,
+.experience {
+  border: 1px solid yellow;
+}
+
+.profile-p,
 .education-p {
   border-bottom: 1px solid black;
+  min-height: 25%;
 }
 
 .experience-template {

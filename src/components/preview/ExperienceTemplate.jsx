@@ -3,7 +3,7 @@ export default function ExperienceTemplate({
   position,
   respons,
   initialDate,
-  finalDate
+  finalDate,
 }) {
   return (
     <div className="experience-template">
