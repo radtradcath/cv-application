@@ -5,9 +5,9 @@ export default function ProfileForm({
   phoneValue,
 }) {
   return (
-    <>
-      <div>
-        <label htmlFor="name">Name: </label>
+    <div className="input-collection">
+      <label htmlFor="name">
+        Name:
         <input
           type="text"
           name="name"
@@ -15,10 +15,10 @@ export default function ProfileForm({
           value={nameValue}
           onChange={handler}
         />
-      </div>
+      </label>
 
-      <div>
-        <label htmlFor="email">E-mail: </label>
+      <label htmlFor="email">
+        E-mail:
         <input
           type="email"
           name="email"
@@ -26,10 +26,10 @@ export default function ProfileForm({
           value={emailValue}
           onChange={handler}
         />
-      </div>
+      </label>
 
-      <div>
-        <label htmlFor="phone">Phone: </label>
+      <label htmlFor="phone">
+        Phone:
         <input
           type="tel"
           name="phone"
@@ -37,7 +37,7 @@ export default function ProfileForm({
           value={phoneValue}
           onChange={handler}
         />
-      </div>
-    </>
+      </label>
+    </div>
   );
 }

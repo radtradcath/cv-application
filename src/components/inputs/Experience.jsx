@@ -5,11 +5,11 @@ export default function Experience({
   to,
   responsibility,
   handler,
-  id
+  id,
 }) {
   return (
-    <div className="experience" id={id}>
-      <div>
+    <div className="experience input-collection" id={id}>
+      <div className="company-flex">
         <label>
           Company:
           <input
@@ -19,47 +19,41 @@ export default function Experience({
             onChange={handler}
           />
         </label>
+
+        <label>
+          Position:
+          <input
+            type="text"
+            name="position"
+            value={position}
+            onChange={handler}
+          />
+        </label>
       </div>
 
-      <div>
-        <label>Position: </label>
-        <input
-          type="text"
-          name="position"
-          value={position}
-          onChange={handler}
-        />
-      </div>
+    
+        <label>
+          From:
+          <input type="date" name="from" value={from} onChange={handler} />
+        </label>
 
-      <div>
-        <label>From: </label>
-        <input
-          type="date"
-          name="from"
-          value={from}
-          onChange={handler}
-        />
-      </div>
+        <label>
+          To:
+          <input type="date" name="to" value={to} onChange={handler} />
+        </label>
+  
 
-      <div>
-        <label>To: </label>
-        <input
-          type="date"
-          name="to"
-          value={to}
-          onChange={handler}
-        />
-      </div>
-
-      <div>
-        <label>Main Responsability: </label>
+      <label>
+        Main Responsability:
         <input
           type="textarea"
           name="responsibility"
           value={responsibility}
           onChange={handler}
         />
-      </div>
+      </label>
+
+      <button className="delete-btn">Remove</button>
     </div>
   );
 }

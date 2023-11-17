@@ -1,33 +1,27 @@
 export default function Education({ handler, school, area, from, to, id }) {
   return (
-    <div className="education" id={id}>
-      <div>
-        <label>
-          School:
-          <input type="text" name="school" value={school} onChange={handler} />
-        </label>
-      </div>
+    <div className="education input-collection" id={id}>
+      <label>
+        School:
+        <input type="text" name="school" value={school} onChange={handler} />
+      </label>
 
-      <div>
-        <label>
-          Study area:
-          <input type="text" name="area" value={area} onChange={handler} />
-        </label>
-      </div>
+      <label>
+        Study area:
+        <input type="text" name="area" value={area} onChange={handler} />
+      </label>
 
-      <div>
-        <label>
-          From:
-          <input type="date" name="from" value={from} onChange={handler} />
-        </label>
-      </div>
+      <label>
+        From:
+        <input type="date" name="from" value={from} onChange={handler} />
+      </label>
 
-      <div>
-        <label>
-          To:
-          <input type="date" name="to" value={to} onChange={handler} />
-        </label>
-      </div>
+      <label>
+        To:
+        <input type="date" name="to" value={to} onChange={handler} />
+      </label>
+
+      <button className="delete-btn">Remove</button>
     </div>
   );
 }

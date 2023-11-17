@@ -7,7 +7,7 @@ export default function FormSection({ title, children, newHandler }) {
         ""
       ) : (
         <button className="experience-plus" onClick={newHandler}>
-          New
+          +
         </button>
       )}
     </div>

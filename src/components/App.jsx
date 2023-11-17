@@ -9,6 +9,7 @@ import Experience from "./inputs/Experience.jsx";
 import PreviewSection from "./preview/PreviewSection.jsx";
 import ExperienceTemplate from "./preview/ExperienceTemplate.jsx";
 import PreviewProfile from "./preview/PreviewProfile.jsx";
+import EducationTemplate from "./preview/EducationTemplate.jsx";
 
 export default function App() {
   // Handle Inputs
@@ -20,7 +21,9 @@ export default function App() {
 
   const [copyProfile, setCopyProfile] = useState("");
   const [experienceForms, setExperienceForms] = useState([]);
+  const [copyExperience, setCopyExperience] = useState([]);
   const [educationForms, setEducationForms] = useState([]);
+  const [copyEducation, setCopyEducation] = useState([]);
 
   function profileInputHandler(e) {
     const value = e.target.value;
@@ -51,13 +54,14 @@ export default function App() {
         return obj.id === parentId ? { ...obj, [inputKey]: value } : obj;
       })
     );
+    console.log(educationForms);
   }
 
   // Handle "New" buttons
 
   function handleNewExperience(e) {
     e.preventDefault();
-    
+
     return setExperienceForms([
       ...experienceForms,
       {
@@ -73,7 +77,7 @@ export default function App() {
 
   function handleNewEducation(e) {
     e.preventDefault();
-    console.log(educationForms)
+    console.log(educationForms);
 
     return setEducationForms([
       ...educationForms,
@@ -92,6 +96,9 @@ export default function App() {
   function handleSubmit(e) {
     e.preventDefault();
     setCopyProfile(profileState);
+    setCopyEducation(educationForms);
+    setCopyExperience(experienceForms);
+    console.log(educationForms);
   }
 
   return (
@@ -103,7 +110,6 @@ export default function App() {
             nameValue={profileState.name}
             emailValue={profileState.email}
             phoneValue={profileState.phone}
-          
           />
         </FormSection>
         <FormSection title="Education" newHandler={handleNewEducation}>
@@ -142,14 +148,30 @@ export default function App() {
             email={copyProfile.email}
           />
         </PreviewSection>
-        <PreviewSection
-          title="Education"
-          classTitle="education-p"
-        ></PreviewSection>
+        <PreviewSection title="Education" classTitle="education-p">
+          {copyEducation.map((obj) => (
+            <EducationTemplate
+              school={obj.school}
+              area={obj.area}
+              from={obj.from}
+              to={obj.to}
+            />
+          ))}
+        </PreviewSection>
         <PreviewSection
           title="Professional Experience"
           classTitle="experience-p"
-        ></PreviewSection>
+        >
+          {copyExperience.map((obj) => (
+            <ExperienceTemplate
+              company={obj.company}
+              position={obj.position}
+              from={obj.from}
+              to={obj.to}
+              respons={obj.responsibility}
+            />
+          ))}
+        </PreviewSection>
       </PreviewWrapper>
     </AppWrapper>
   );
