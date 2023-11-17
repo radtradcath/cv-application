@@ -5,7 +5,7 @@ export default function EducationTemplate({
     to,
   }) {
     return (
-      <div className="experience-template">
+      <div className="education-template">
         <p>School: {school}</p>
         <p>Area: {area}</p>
         <p>From: {from}</p>

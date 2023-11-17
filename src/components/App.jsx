@@ -124,7 +124,7 @@ export default function App() {
     setCopyProfile(profileState);
     setCopyEducation(educationForms);
     setCopyExperience(experienceForms);
-    setIsDisabled(true)
+    setIsDisabled(true);
     console.log(educationForms);
   }
 
@@ -132,11 +132,14 @@ export default function App() {
     e.preventDefault();
     setIsDisabled("");
   }
-  
 
   return (
     <AppWrapper>
-      <FormsWrapper handler={handleSubmit} disabled={isDisabled}>
+      <FormsWrapper
+        handler={handleSubmit}
+        disabled={isDisabled}
+        handleEdit={handleEdit}
+      >
         <FormSection title="Personal Info">
           <ProfileForm
             handler={profileInputHandler}
@@ -146,7 +149,11 @@ export default function App() {
             disabled={isDisabled}
           />
         </FormSection>
-        <FormSection title="Education" newHandler={handleNewEducation} disabled={isDisabled}>
+        <FormSection
+          title="Education"
+          newHandler={handleNewEducation}
+          disabled={isDisabled}
+        >
           {educationForms.map((form) => (
             <Education
               key={form.id}
@@ -161,7 +168,11 @@ export default function App() {
             />
           ))}
         </FormSection>
-        <FormSection title="Experience" newHandler={handleNewExperience} disabled={isDisabled}>
+        <FormSection
+          title="Experience"
+          newHandler={handleNewExperience}
+          disabled={isDisabled}
+        >
           {experienceForms.map((form) => (
             <Experience
               key={form.id}
@@ -189,6 +200,7 @@ export default function App() {
         <PreviewSection title="Education" classTitle="education-p">
           {copyEducation.map((obj) => (
             <EducationTemplate
+              key={obj.id}
               school={obj.school}
               area={obj.area}
               from={obj.from}
@@ -202,6 +214,7 @@ export default function App() {
         >
           {copyExperience.map((obj) => (
             <ExperienceTemplate
+              key={obj.id}
               company={obj.company}
               position={obj.position}
               from={obj.from}

@@ -15,30 +15,11 @@ h1, h2, h3, h4 {
   font-family: 'Roboto', sans-serif;
 }
 
-.form-container button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2em;
-  border: none;
-  background-color: #67E8F9;
-  width: 3em;
-  height: 3em;
-  outline: none;
-  padding: 1em 0;
-  border-radius: 50%;
-  align-self: center;
-}
-
-#root {
-  border: 1px solid blue;
-}
-
 .app {
   display: flex;
   padding: 15px;
-  gap: 12px;
-  
+  gap: 2.5em;
+  min-height: 100vh;
   background-color: #18181B;
 }
 
@@ -49,21 +30,20 @@ body {
 
 .form-container {
   padding: 1em;
-  border: 1px solid red;
+  background-color: #292524;
+  box-shadow: 5px 5px 6px 3px rgba(255, 255, 255, 0.199);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
 
-
 .input-collection{
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   border-radius: 12px;
-  padding: 1em;
-  
+  padding: 1em;  
   background-color: #0E7490;
 }
 
@@ -78,6 +58,21 @@ body {
 
 .form-container h1 {
   margin-top: 0;
+}
+
+.form-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  border: none;
+  background-color: #67E8F9;
+  width: 3em;
+  height: 3em;
+  outline: none;
+  padding: 1em 0;
+  border-radius: 50%;
+  align-self: center;
 }
 
 label {
@@ -95,7 +90,6 @@ input {
 
 form {
   width: 50%;
-  border: 1px solid green;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -105,17 +99,47 @@ form {
   flex: 1;
 }
 
+.form-buttons {
+  align-self: center;
+}
+
+.form-container .delete-btn {
+  font-size: 1em;
+  padding: 1em 2em;
+  background-color: #FCA5A5;
+  border-radius: 8px;
+}
+
+.forms-buttons {
+  display: flex;
+  align-self: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.forms-buttons button {
+  padding: 1em 2em;
+  border-radius: 8px;
+  border: none;
+  background-color: #67E8F9;
+}
+
 .preview-wrapper {
   display: flex;
   flex-direction: column;
   width: 50%;
-  border: 1px solid brown;
+  
   padding: 15px;
+  background-color: white;
 }
 
-.preview-wrapper h1 {
+.preview-wrapper h1,
+.preview-wrapper h2,
+.preview-wrapper h3 {
+  color: #312E81;
   padding-left: 5%;
   margin-top: 1em;
+  
 }
 
 h1.name-p {
@@ -135,14 +159,19 @@ h1.name-p {
 }
 
 .experience-template,
-.education-template {
-  border: 1px solid black;
+.education-template {  
   border-bottom: 1px solid black;
 }
 
+.experience-template:last-child {
+  border: 0;
+}
+
+
+
 @media (max-width: 768px) {
   :not(h1, h2, h3, h4) {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .app {
@@ -155,5 +184,10 @@ h1.name-p {
 
   .preview-wrapper {
     width: 100%;
+  }
+
+  form {
+    margin-bottom: 2em;
+    gap: 1.5em;
   }
 }
