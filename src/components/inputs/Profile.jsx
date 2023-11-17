@@ -3,6 +3,7 @@ export default function ProfileForm({
   nameValue,
   emailValue,
   phoneValue,
+  disabled
 }) {
   return (
     <div className="input-collection">
@@ -14,6 +15,7 @@ export default function ProfileForm({
           id="name"
           value={nameValue}
           onChange={handler}
+          disabled={disabled}
         />
       </label>
 
@@ -25,6 +27,7 @@ export default function ProfileForm({
           id="email"
           value={emailValue}
           onChange={handler}
+          disabled={disabled}
         />
       </label>
 
@@ -36,6 +39,7 @@ export default function ProfileForm({
           id="phone"
           value={phoneValue}
           onChange={handler}
+          disabled={disabled}
         />
       </label>
     </div>

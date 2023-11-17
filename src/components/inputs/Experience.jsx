@@ -5,7 +5,9 @@ export default function Experience({
   to,
   responsibility,
   handler,
+  deleteHandler,
   id,
+  disabled
 }) {
   return (
     <div className="experience input-collection" id={id}>
@@ -17,6 +19,7 @@ export default function Experience({
             name="company"
             value={company}
             onChange={handler}
+            disabled={disabled}
           />
         </label>
 
@@ -27,6 +30,7 @@ export default function Experience({
             name="position"
             value={position}
             onChange={handler}
+            disabled={disabled}
           />
         </label>
       </div>
@@ -34,12 +38,12 @@ export default function Experience({
     
         <label>
           From:
-          <input type="date" name="from" value={from} onChange={handler} />
+          <input disabled={disabled} type="date" name="from" value={from} onChange={handler} />
         </label>
 
         <label>
           To:
-          <input type="date" name="to" value={to} onChange={handler} />
+          <input disabled={disabled} type="date" name="to" value={to} onChange={handler} />
         </label>
   
 
@@ -50,10 +54,11 @@ export default function Experience({
           name="responsibility"
           value={responsibility}
           onChange={handler}
+          disabled={disabled}
         />
       </label>
 
-      <button className="delete-btn">Remove</button>
+      <button className="delete-btn" disabled={disabled} onClick={deleteHandler}>Remove</button>
     </div>
   );
 }

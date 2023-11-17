@@ -1,27 +1,27 @@
-export default function Education({ handler, school, area, from, to, id }) {
+export default function Education({ disabled, handler, school, area, from, to, id, deleteHandler }) {
   return (
     <div className="education input-collection" id={id}>
       <label>
         School:
-        <input type="text" name="school" value={school} onChange={handler} />
+        <input disabled={disabled} type="text" name="school" value={school} onChange={handler} />
       </label>
 
       <label>
         Study area:
-        <input type="text" name="area" value={area} onChange={handler} />
+        <input disabled={disabled} type="text" name="area" value={area} onChange={handler} />
       </label>
 
       <label>
         From:
-        <input type="date" name="from" value={from} onChange={handler} />
+        <input disabled={disabled} type="date" name="from" value={from} onChange={handler} />
       </label>
 
       <label>
         To:
-        <input type="date" name="to" value={to} onChange={handler} />
+        <input disabled={disabled} type="date" name="to" value={to} onChange={handler} />
       </label>
 
-      <button className="delete-btn">Remove</button>
+      <button disabled={disabled} className="delete-btn" onClick={deleteHandler}>Remove</button>
     </div>
   );
 }

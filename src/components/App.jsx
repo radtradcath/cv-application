@@ -24,6 +24,7 @@ export default function App() {
   const [copyExperience, setCopyExperience] = useState([]);
   const [educationForms, setEducationForms] = useState([]);
   const [copyEducation, setCopyEducation] = useState([]);
+  const [isDisabled, setIsDisabled] = useState("");
 
   function profileInputHandler(e) {
     const value = e.target.value;
@@ -55,6 +56,31 @@ export default function App() {
       })
     );
     console.log(educationForms);
+  }
+
+  function deleteEducationHandler(e) {
+    e.preventDefault();
+
+    const parentNodeId = e.target.parentNode.id;
+
+    setEducationForms(
+      educationForms.filter((obj) => {
+        return obj.id !== parentNodeId;
+      })
+    );
+  }
+  console.log(educationForms);
+
+  function deleteExperienceHandler(e) {
+    e.preventDefault();
+
+    const parentNodeId = e.target.parentNode.id;
+
+    setExperienceForms(
+      experienceForms.filter((obj) => {
+        return obj.id !== parentNodeId;
+      })
+    );
   }
 
   // Handle "New" buttons
@@ -98,21 +124,29 @@ export default function App() {
     setCopyProfile(profileState);
     setCopyEducation(educationForms);
     setCopyExperience(experienceForms);
+    setIsDisabled(true)
     console.log(educationForms);
   }
 
+  function handleEdit(e) {
+    e.preventDefault();
+    setIsDisabled("");
+  }
+  
+
   return (
     <AppWrapper>
-      <FormsWrapper handler={handleSubmit}>
+      <FormsWrapper handler={handleSubmit} disabled={isDisabled}>
         <FormSection title="Personal Info">
           <ProfileForm
             handler={profileInputHandler}
             nameValue={profileState.name}
             emailValue={profileState.email}
             phoneValue={profileState.phone}
+            disabled={isDisabled}
           />
         </FormSection>
-        <FormSection title="Education" newHandler={handleNewEducation}>
+        <FormSection title="Education" newHandler={handleNewEducation} disabled={isDisabled}>
           {educationForms.map((form) => (
             <Education
               key={form.id}
@@ -122,10 +156,12 @@ export default function App() {
               from={form.from}
               to={form.to}
               handler={educationInputHandler}
+              deleteHandler={deleteEducationHandler}
+              disabled={isDisabled}
             />
           ))}
         </FormSection>
-        <FormSection title="Experience" newHandler={handleNewExperience}>
+        <FormSection title="Experience" newHandler={handleNewExperience} disabled={isDisabled}>
           {experienceForms.map((form) => (
             <Experience
               key={form.id}
@@ -135,6 +171,8 @@ export default function App() {
               to={form.to}
               responsibility={form.responsibility}
               handler={experienceInputHandler}
+              deleteHandler={deleteExperienceHandler}
+              disabled={isDisabled}
             />
           ))}
         </FormSection>
