@@ -125,7 +125,7 @@ export default function App() {
     setCopyEducation(educationForms);
     setCopyExperience(experienceForms);
     setIsDisabled(true);
-    console.log(educationForms);
+    console.log(experienceForms);
   }
 
   function handleEdit(e) {

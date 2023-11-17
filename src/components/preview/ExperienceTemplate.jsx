@@ -2,15 +2,15 @@ export default function ExperienceTemplate({
   company,
   position,
   respons,
-  initialDate,
-  finalDate,
+  from,
+  to,
 }) {
   return (
     <div className="experience-template">
       <p>Company: {company}</p>
       <p>Position: {position}</p>
-      <p>From: {initialDate}</p>
-      <p>To: {finalDate}</p>
+      <p>From: {from}</p>
+      <p>To: {to}</p>
       <p>Main Responsabilities: {respons}</p>
     </div>
   );
